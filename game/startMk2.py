@@ -10,27 +10,33 @@ def on_exit():
 
 class Game:
     def __init__(self):
+        self.n = int(input("Please choose a number of wrong pads: "))
         self.lp = LaunchpadMk2.LaunchpadMk2()
         self.lp.Reset()
         self.lp.register_on_button_press(on_button=self.on_button_press)
-        self.wrong = ()
+        self.wrong = []
         self.pres = []
         self.isDead = False
         self.start_game()
 
     def start_game(self):
         self.lp.LedAllOn(colorcode=self.lp.COLORS["green"])
-        self.wrong = (random.randint(0, 7), random.randint(1, 9))
+        for i in range(self.n):
+            x = (random.randint(0, 7), random.randint(1, 9))
+            while x in self.wrong:
+                x = (random.randint(0, 7), random.randint(1, 9))
+            self.wrong.append(x)
         while len(self.pres) <= 63:
             pass
         self.on_win()
 
     def on_button_press(self, x, y, pres):
         if pres > 0 and (x, y) != self.pres:
-            if (x, y) == self.wrong:
+            if (x, y) in self.wrong:
                 self.on_death()
             else:
-                self.pres.append((x,y))
+                self.pres.append((x, y))
+                self.lp.LedCtrlXY(x, y, 0, 0, 0)
 
 
     def on_win(self):
@@ -42,7 +48,8 @@ class Game:
 
     def on_death(self):
         self.lp.Reset()
-        self.lp.LedCtrlXY(self.wrong[0], self.wrong[1], 255, 0, 0)
+        for i in self.wrong:
+            self.lp.LedCtrlXY(i[0], i[1], 255, 0, 0)
         self.lp.continue_listener = False
         self.lp.Close()
         exit()
