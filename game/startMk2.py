@@ -22,9 +22,9 @@ class Game:
     def start_game(self):
         self.lp.LedAllOn(colorcode=self.lp.COLORS["green"])
         for i in range(self.n):
-            x = (random.randint(0, 7), random.randint(1, 9))
+            x = (random.randint(0, 7), random.randint(1, 8))
             while x in self.wrong:
-                x = (random.randint(0, 7), random.randint(1, 9))
+                x = (random.randint(0, 7), random.randint(1, 8))
             self.wrong.append(x)
         while len(self.pres) <= 63:
             pass
