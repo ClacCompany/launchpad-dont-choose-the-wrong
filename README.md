@@ -8,5 +8,5 @@ Supported Launchpad´s:
   - Sounds
 
 Dependencies:
-  - atexit
+  - 
  
