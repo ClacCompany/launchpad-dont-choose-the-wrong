@@ -8,5 +8,4 @@ Supported Launchpad´s:
   - Sounds
 
 Dependencies:
-  - 
- 
+  - launchpad_py
