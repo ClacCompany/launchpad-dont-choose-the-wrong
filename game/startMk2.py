@@ -1,4 +1,4 @@
-from game import LaunchpadMk2
+import LaunchpadMk2
 import atexit
 import os
 import random
