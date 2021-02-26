@@ -5,7 +5,7 @@ Supported Launchpad´s:
  
  
  Currently in Work:
-  - Sounds
+  - Support for other Launchpads
 
 Dependencies:
   - launchpad_py
